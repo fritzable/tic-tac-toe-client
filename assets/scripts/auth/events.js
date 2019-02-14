@@ -21,18 +21,13 @@ const placeX = squareIndex => {
 // const isGameDraw = gameBoard =>
 
 // Function that runs on click, and places a mark in a square
-// const userClicked = event => {
-//  console.log('clicked')
-// }
-
-const userClicked0 = event => {
-  console.log('clicked')
-  const index = 0
+const userClicked = event => {
+  console.log(event.target)
+  const index = event.target.id
   placeX(index)
   console.log(gameBoard)
 }
 
 module.exports = {
-//  userClicked,
-  userClicked0
+  userClicked
 }
