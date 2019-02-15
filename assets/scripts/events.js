@@ -92,16 +92,21 @@ const threeInDiagonalX = (gameBoard) => {
   }
 }
 
-// Function that examines the board for a win condition and prints which player won
+// Function that examines the board for a win condition and prints game over.
 const isGameWon = (gameBoard) => {
   if (threeInRowX(gameBoard) || threeInRowO(gameBoard) || threeInColumnX(gameBoard) ||
     threeInColumnO(gameBoard) || threeInDiagonalO(gameBoard) || threeInDiagonalX(gameBoard)) {
     console.log('win')
+    $('#user-message').text(`Winner. Game Over.`)
   }
 }
 
-// Function that examines the board for a draw condition and prints draw
-// const isGameDraw = gameBoard =>
+// Function that examines for a draw condition and prints draw.
+const isGameDraw = gameBoard => {
+  if (gameBoard.every(space => space !== '')) {
+    $('#user-message').text(`Draw. Game Over.`)
+  }
+}
 
 // Function that runs on click, and places a mark in a square
 const userClicked = event => {
@@ -115,6 +120,7 @@ const userClicked = event => {
   console.log(gameBoard)
   console.log(playerTurnIs)
   isGameWon(gameBoard)
+  isGameDraw(gameBoard)
 }
 
 module.exports = {
