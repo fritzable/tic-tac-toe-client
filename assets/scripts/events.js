@@ -14,10 +14,14 @@ const currentPlayer = () => {
 
 // Function that takes an array index and replaces empty string with string of X
 const placeX = squareIndex => {
-  // If space is empty
-  if (gameBoard[squareIndex] === '') {
+  // If space is not empty
+  if (gameBoard[squareIndex] !== '') {
+    $('#user-message').text(`That spot's taken; try another.`)
+    console.log('tried to place an X over a taken spot')
+  } else if (gameBoard[squareIndex] === '') {
   // Write X in space
     gameBoard[squareIndex] = 'X'
+    $(event.target).text(`${playerTurnIs}`)
     playerTurnIs = 'O'
     currentPlayer()
   }
@@ -25,10 +29,15 @@ const placeX = squareIndex => {
 
 // Function that takes an array index and replaces empty string with string of O
 const placeO = squareIndex => {
-  // If space is empty
-  if (gameBoard[squareIndex] === '') {
+  // If space is not empty
+  if (gameBoard[squareIndex] !== '') {
+  // Display message that move is invalid
+    $('#user-message').text(`That spot's taken; try another.`)
+    console.log('tried to place an O over a taken spot')
+  } else if (gameBoard[squareIndex] === '') {
   // Write O in space
     gameBoard[squareIndex] = 'O'
+    $(event.target).text(`${playerTurnIs}`)
     playerTurnIs = 'X'
     currentPlayer()
   }
@@ -83,20 +92,25 @@ const threeInDiagonalX = (gameBoard) => {
   }
 }
 
-// Function that examines the board for a win condition and prints which player won
+// Function that examines the board for a win condition and prints game over.
 const isGameWon = (gameBoard) => {
   if (threeInRowX(gameBoard) || threeInRowO(gameBoard) || threeInColumnX(gameBoard) ||
     threeInColumnO(gameBoard) || threeInDiagonalO(gameBoard) || threeInDiagonalX(gameBoard)) {
     console.log('win')
+    $('#user-message').text(`Winner. Game Over.`)
   }
 }
 
-// Function that examines the board for a draw condition and prints draw
-// const isGameDraw = gameBoard =>
+// Function that examines for a draw condition and prints draw.
+const isGameDraw = gameBoard => {
+  if (gameBoard.every(space => space !== '')) {
+    $('#user-message').text(`Draw. Game Over.`)
+  }
+}
 
 // Function that runs on click, and places a mark in a square
 const userClicked = event => {
-  console.log(event.target)
+  console.log(playerTurnIs)
   const index = event.target.id
   if (playerTurnIs === 'X') {
     placeX(index)
@@ -104,8 +118,9 @@ const userClicked = event => {
     placeO(index)
   }
   console.log(gameBoard)
-  console.log(threeInRowX)
+  console.log(playerTurnIs)
   isGameWon(gameBoard)
+  isGameDraw(gameBoard)
 }
 
 module.exports = {
