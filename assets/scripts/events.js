@@ -96,7 +96,8 @@ const isGameWon = (gameBoard) => {
 
 // Function that runs on click, and places a mark in a square
 const userClicked = event => {
-  console.log(event.target)
+  $(event.target).text(`${playerTurnIs}`)
+  console.log(playerTurnIs)
   const index = event.target.id
   if (playerTurnIs === 'X') {
     placeX(index)
@@ -104,7 +105,7 @@ const userClicked = event => {
     placeO(index)
   }
   console.log(gameBoard)
-  console.log(threeInRowX)
+  console.log(playerTurnIs)
   isGameWon(gameBoard)
 }
 
