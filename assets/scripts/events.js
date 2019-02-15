@@ -94,10 +94,12 @@ const threeInDiagonalX = (gameBoard) => {
 
 // Function that examines the board for a win condition and prints game over.
 const isGameWon = (gameBoard) => {
-  if (threeInRowX(gameBoard) || threeInRowO(gameBoard) || threeInColumnX(gameBoard) ||
-    threeInColumnO(gameBoard) || threeInDiagonalO(gameBoard) || threeInDiagonalX(gameBoard)) {
-    console.log('win')
+  if (threeInRowX(gameBoard) || threeInRowO(gameBoard) ||
+    threeInColumnX(gameBoard) || threeInColumnO(gameBoard) ||
+    threeInDiagonalO(gameBoard) || threeInDiagonalX(gameBoard)) {
     $('#user-message').text(`Winner. Game Over.`)
+    // Disable further clicking.
+    $('.square').off('click')
   }
 }
 
@@ -105,6 +107,8 @@ const isGameWon = (gameBoard) => {
 const isGameDraw = gameBoard => {
   if (gameBoard.every(space => space !== '')) {
     $('#user-message').text(`Draw. Game Over.`)
+    // Disable further clicking.
+    $('.square').off('click')
   }
 }
 
