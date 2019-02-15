@@ -14,10 +14,14 @@ const currentPlayer = () => {
 
 // Function that takes an array index and replaces empty string with string of X
 const placeX = squareIndex => {
-  // If space is empty
-  if (gameBoard[squareIndex] === '') {
+  // If space is not empty
+  if (gameBoard[squareIndex] !== '') {
+    $('#user-message').text(`That spot's taken; try another.`)
+    console.log('tried to place an X over a taken spot')
+  } else if (gameBoard[squareIndex] === '') {
   // Write X in space
     gameBoard[squareIndex] = 'X'
+    $(event.target).text(`${playerTurnIs}`)
     playerTurnIs = 'O'
     currentPlayer()
   }
@@ -25,10 +29,15 @@ const placeX = squareIndex => {
 
 // Function that takes an array index and replaces empty string with string of O
 const placeO = squareIndex => {
-  // If space is empty
-  if (gameBoard[squareIndex] === '') {
+  // If space is not empty
+  if (gameBoard[squareIndex] !== '') {
+  // Display message that move is invalid
+    $('#user-message').text(`That spot's taken; try another.`)
+    console.log('tried to place an O over a taken spot')
+  } else if (gameBoard[squareIndex] === '') {
   // Write O in space
     gameBoard[squareIndex] = 'O'
+    $(event.target).text(`${playerTurnIs}`)
     playerTurnIs = 'X'
     currentPlayer()
   }
@@ -96,7 +105,6 @@ const isGameWon = (gameBoard) => {
 
 // Function that runs on click, and places a mark in a square
 const userClicked = event => {
-  $(event.target).text(`${playerTurnIs}`)
   console.log(playerTurnIs)
   const index = event.target.id
   if (playerTurnIs === 'X') {
