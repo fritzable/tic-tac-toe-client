@@ -13,3 +13,5 @@ curl "https://tic-tac-toe-wdi-production.herokuapp.com/sign-up" \
       "password_confirmation": "'"${PASSWORD}"'"
     }
   }'
+
+echo
