@@ -11,6 +11,16 @@ const ui = require('./ui.js')
 // require('./example')
 
 $(() => {
+  $('.row').hide()
+
+  $('#user-message').hide()
+
+  $('#game-message').hide()
+
+  $('#change-password-form').hide()
+
+  $('#sign-out-form').hide()
+
   $('.square').on('click', events.userClicked)
 
   events.currentPlayer()

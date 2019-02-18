@@ -11,7 +11,7 @@ let playerTurnIs = 'X'
 
 // Function to display current player turn
 const currentPlayer = () => {
-  $('#user-message').text(`Player ${playerTurnIs}, it is your turn.`)
+  $('#game-message').text(`Player ${playerTurnIs}, it is your turn.`)
   $('.square').trigger('reset')
 }
 
@@ -19,7 +19,7 @@ const currentPlayer = () => {
 const placeX = squareIndex => {
   // If space is not empty
   if (gameBoard[squareIndex] !== '') {
-    $('#user-message').text(`That spot's taken; try another.`)
+    $('#game-message').text(`That spot's taken; try another.`)
     console.log('tried to place an X over a taken spot')
   } else if (gameBoard[squareIndex] === '') {
   // Write X in space
@@ -35,7 +35,7 @@ const placeO = squareIndex => {
   // If space is not empty
   if (gameBoard[squareIndex] !== '') {
   // Display message that move is invalid
-    $('#user-message').text(`That spot's taken; try another.`)
+    $('#game-message').text(`That spot's taken; try another.`)
     console.log('tried to place an O over a taken spot')
   } else if (gameBoard[squareIndex] === '') {
   // Write O in space
@@ -100,7 +100,7 @@ const isGameWon = (gameBoard) => {
   if (threeInRowX(gameBoard) || threeInRowO(gameBoard) ||
     threeInColumnX(gameBoard) || threeInColumnO(gameBoard) ||
     threeInDiagonalO(gameBoard) || threeInDiagonalX(gameBoard)) {
-    $('#user-message').text(`Winner. Game Over.`)
+    $('#game-message').text(`Winner. Game Over.`)
     // Disable further clicking.
     $('.square').off('click')
   }
@@ -109,7 +109,7 @@ const isGameWon = (gameBoard) => {
 // Function that examines for a draw condition and prints draw.
 const isGameDraw = gameBoard => {
   if (gameBoard.every(space => space !== '')) {
-    $('#user-message').text(`Draw. Game Over.`)
+    $('#game-message').text(`Draw. Game Over.`)
     // Disable further clicking.
     $('.square').off('click')
   }
@@ -117,6 +117,7 @@ const isGameDraw = gameBoard => {
 
 // Function that runs on click, and places a mark in a square
 const userClicked = event => {
+  $('#user-message').text('')
   console.log(playerTurnIs)
   const index = event.target.id
   if (playerTurnIs === 'X') {
