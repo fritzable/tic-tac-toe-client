@@ -13,6 +13,8 @@ const ui = require('./ui.js')
 $(() => {
   $('.row').hide()
 
+  $('#new-game-button').hide()
+
   $('#user-message').hide()
 
   $('#game-message').hide()
@@ -22,6 +24,8 @@ $(() => {
   $('#sign-out-form').hide()
 
   $('.square').on('click', events.userClicked)
+
+  $('#new-game-button').on('submit', events.newGame)
 
   events.currentPlayer()
 

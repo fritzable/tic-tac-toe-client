@@ -4,7 +4,7 @@ const api = require('./api.js')
 const ui = require('./ui.js')
 
 // Store spaces as an array of empty strings
-const gameBoard = ['', '', '', '', '', '', '', '', '']
+let gameBoard = ['', '', '', '', '', '', '', '', '']
 
 // Store turn as a variable
 let playerTurnIs = 'X'
@@ -102,19 +102,38 @@ const isGameWon = (gameBoard) => {
     threeInDiagonalO(gameBoard) || threeInDiagonalX(gameBoard)) {
     $('#game-message').text(`Winner. Game Over.`)
     // Disable further clicking.
-    $('.square').off('click')
+    $('.square').off('click', userClicked)
+    // Show new game button
+    $('#new-game-button').show()
   }
 }
 
 // Function that examines for a draw condition and prints draw.
 const isGameDraw = gameBoard => {
-  if (gameBoard.every(space => space !== '')) {
+  if ((!threeInRowX(gameBoard) && !threeInRowO(gameBoard) &&
+    !threeInColumnX(gameBoard) && !threeInColumnO(gameBoard) &&
+    !threeInDiagonalO(gameBoard) && !threeInDiagonalX(gameBoard)) &&
+    (gameBoard.every(space => space !== ''))) {
     $('#game-message').text(`Draw. Game Over.`)
     // Disable further clicking.
-    $('.square').off('click')
+    $('.square').off('click', userClicked)
+    // Show new game button
+    $('#new-game-button').show()
   }
 }
 
+// Function that resets game board on new game click
+const newGame = () => {
+  event.preventDefault()
+  $('#new-game-button').hide()
+  gameBoard = ['', '', '', '', '', '', '', '', '']
+  $('.square').text('[]')
+  $('.row').show()
+  $('#user-message').show()
+  $('#game-message').show()
+  $('.square').on('click', userClicked)
+  console.log(gameBoard)
+}
 // Function that runs on click, and places a mark in a square
 const userClicked = event => {
   $('#user-message').text('')
@@ -188,5 +207,6 @@ module.exports = {
   onSignUp,
   onSignIn,
   onSignOut,
-  onChangePassword
+  onChangePassword,
+  newGame
 }
