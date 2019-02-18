@@ -35,7 +35,20 @@
         <input name="credentials[password]" type ="password" required placeholder="password">
         <input name="credentials[password_confirmation]" type="password" required placeholder="password confirmation">
         <input type="submit" value="Sign up">
-      </form>
+  </form>
+  <form id="sign-in-form">
+          <input name="credentials[email]" type="email" required placeholder="email">
+          <input name="credentials[password]" type="password" required placeholder="password">
+          <input type="submit" value="Sign in">
+  </form>
+  <form id="sign-out-form">
+      <input type="submit" value="Sign out">
+  </form>
+  <form id="change-password-form">
+        <input name="passwords[old]" type="password" required placeholder="old password">
+        <input name="passwords[new]" type="password" required placeholder="new password">
+        <input type="submit" value="Change password">
+  </form>
   </section>
 </body>
 

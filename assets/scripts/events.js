@@ -1,4 +1,7 @@
-// const ui = require('./auth/ui.js')
+const getFormFields = require('../../lib/get-form-fields.js')
+const config = require('./config.js')
+const api = require('./api.js')
+const ui = require('./ui.js')
 
 // Store spaces as an array of empty strings
 const gameBoard = ['', '', '', '', '', '', '', '', '']
@@ -127,8 +130,62 @@ const userClicked = event => {
   isGameDraw(gameBoard)
 }
 
+const onSignUp = (event) => {
+  event.preventDefault()
+
+  const form = event.target
+  console.log('form', form)
+
+  const formData = getFormFields(form)
+  console.log('formData', formData)
+
+  api.signUp(formData)
+    .then(ui.signUpSuccess)
+    .catch(ui.signUpFailure)
+}
+
+const onSignIn = (event) => {
+  event.preventDefault()
+
+  const form = event.target
+  console.log('form', form)
+
+  const formData = getFormFields(form)
+  console.log('formData', formData)
+
+  api.signIn(formData)
+    .then(ui.signInSuccess)
+    .catch(ui.signInFailure)
+}
+
+const onSignOut = (event) => {
+  event.preventDefault()
+
+  api.signOut()
+    .then(ui.signOutSuccess)
+    .catch(ui.signOutFailure)
+}
+
+const onChangePassword = (event) => {
+  event.preventDefault()
+
+  const form = event.target
+  console.log('form', form)
+
+  const formData = getFormFields(form)
+  console.log('formData', formData)
+
+  api.changePassword(formData)
+    .then(ui.changePasswordSuccess)
+    .catch(ui.changePasswordFailure)
+}
+
 module.exports = {
   userClicked,
   playerTurnIs,
-  currentPlayer
+  currentPlayer,
+  onSignUp,
+  onSignIn,
+  onSignOut,
+  onChangePassword
 }
