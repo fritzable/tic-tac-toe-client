@@ -1,6 +1,7 @@
 'use strict'
 
 const store = require('./store.js')
+const api = require('./api.js')
 
 const signUpSuccess = (responseData) => {
   $('#user-message').show()
@@ -26,6 +27,7 @@ const signInSuccess = (responseData) => {
   // save the token
   store.user = responseData.user
   $('form').trigger('reset')
+  api.createGame(responseData)
 }
 
 const signInFailure = () => {
