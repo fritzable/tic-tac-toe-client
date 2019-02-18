@@ -27,7 +27,9 @@ const signInSuccess = (responseData) => {
   // save the token
   store.user = responseData.user
   $('form').trigger('reset')
-  api.createGame(responseData)
+  api.createGame()
+    .then(createGameSuccess)
+    .catch(createGameFailure)
 }
 
 const signInFailure = () => {
@@ -60,6 +62,14 @@ const changePasswordFailure = () => {
   $('#user-message').text('Error on change password')
 }
 
+const createGameSuccess = (responseData) => {
+  store.game = responseData.game
+}
+
+const createGameFailure = () => {
+  $('#user-message').text('Game failed to create')
+}
+
 module.exports = {
   signUpSuccess,
   signUpFailure,
@@ -68,5 +78,7 @@ module.exports = {
   signOutSuccess,
   signOutFailure,
   changePasswordSuccess,
-  changePasswordFailure
+  changePasswordFailure,
+  createGameSuccess,
+  createGameFailure
 }

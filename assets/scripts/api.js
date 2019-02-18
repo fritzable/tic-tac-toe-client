@@ -38,7 +38,7 @@ const changePassword = (formData) => {
   })
 }
 
-const createGame = (formData) => {
+const createGame = () => {
   return $.ajax({
     url: config.apiUrl + '/games',
     method: 'POST',
@@ -49,10 +49,31 @@ const createGame = (formData) => {
   })
 }
 
+const updateGame = (target) => {
+  console.log('store:', store)
+  return $.ajax({
+    url: config.apiUrl + '/games/' + store.game.id,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data: {
+      'game': {
+        'cell': {
+          'index': target.dataset.cellIndex,
+          'value': target.text
+        },
+        'over': false
+      }
+    }
+  })
+}
+
 module.exports = {
   signUp,
   signIn,
   signOut,
   changePassword,
-  createGame
+  createGame,
+  updateGame
 }

@@ -2,6 +2,7 @@ const getFormFields = require('../../lib/get-form-fields.js')
 const config = require('./config.js')
 const api = require('./api.js')
 const ui = require('./ui.js')
+const store = require('./store.js')
 
 // Store spaces as an array of empty strings
 let gameBoard = ['', '', '', '', '', '', '', '', '']
@@ -27,6 +28,7 @@ const placeX = squareIndex => {
     $(event.target).text(`${playerTurnIs}`)
     playerTurnIs = 'O'
     currentPlayer()
+    api.updateGame(event.target)
   }
 }
 
@@ -43,6 +45,7 @@ const placeO = squareIndex => {
     $(event.target).text(`${playerTurnIs}`)
     playerTurnIs = 'X'
     currentPlayer()
+    api.updateGame(event.target)
   }
 }
 
@@ -101,6 +104,7 @@ const isGameWon = (gameBoard) => {
     threeInColumnX(gameBoard) || threeInColumnO(gameBoard) ||
     threeInDiagonalO(gameBoard) || threeInDiagonalX(gameBoard)) {
     $('#game-message').text(`Winner. Game Over.`)
+    store.game.over = true
     // Disable further clicking.
     $('.square').off('click', userClicked)
     // Show new game button
@@ -116,6 +120,7 @@ const isGameDraw = gameBoard => {
     (gameBoard.every(space => space !== ''))) {
     $('#game-message').text(`Draw. Game Over.`)
     // Disable further clicking.
+    store.game.over = true
     $('.square').off('click', userClicked)
     // Show new game button
     $('#new-game-button').show()
@@ -126,11 +131,13 @@ const isGameDraw = gameBoard => {
 const newGame = () => {
   event.preventDefault()
   $('#new-game-button').hide()
+  playerTurnIs = 'X'
   gameBoard = ['', '', '', '', '', '', '', '', '']
   $('.square').text('[]')
   $('.row').show()
   $('#user-message').show()
   $('#game-message').show()
+  currentPlayer()
   $('.square').on('click', userClicked)
   console.log(gameBoard)
 }
