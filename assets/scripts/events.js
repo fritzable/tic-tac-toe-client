@@ -4,14 +4,14 @@ const api = require('./api.js')
 const ui = require('./ui.js')
 
 // Store spaces as an array of empty strings
-const gameBoard = ['', '', '', '', '', '', '', '', '']
+let gameBoard = ['', '', '', '', '', '', '', '', '']
 
 // Store turn as a variable
 let playerTurnIs = 'X'
 
 // Function to display current player turn
 const currentPlayer = () => {
-  $('#user-message').text(`Player ${playerTurnIs}, it is your turn.`)
+  $('#game-message').text(`Player ${playerTurnIs}, it is your turn.`)
   $('.square').trigger('reset')
 }
 
@@ -19,7 +19,7 @@ const currentPlayer = () => {
 const placeX = squareIndex => {
   // If space is not empty
   if (gameBoard[squareIndex] !== '') {
-    $('#user-message').text(`That spot's taken; try another.`)
+    $('#game-message').text(`That spot's taken; try another.`)
     console.log('tried to place an X over a taken spot')
   } else if (gameBoard[squareIndex] === '') {
   // Write X in space
@@ -35,7 +35,7 @@ const placeO = squareIndex => {
   // If space is not empty
   if (gameBoard[squareIndex] !== '') {
   // Display message that move is invalid
-    $('#user-message').text(`That spot's taken; try another.`)
+    $('#game-message').text(`That spot's taken; try another.`)
     console.log('tried to place an O over a taken spot')
   } else if (gameBoard[squareIndex] === '') {
   // Write O in space
@@ -100,23 +100,43 @@ const isGameWon = (gameBoard) => {
   if (threeInRowX(gameBoard) || threeInRowO(gameBoard) ||
     threeInColumnX(gameBoard) || threeInColumnO(gameBoard) ||
     threeInDiagonalO(gameBoard) || threeInDiagonalX(gameBoard)) {
-    $('#user-message').text(`Winner. Game Over.`)
+    $('#game-message').text(`Winner. Game Over.`)
     // Disable further clicking.
-    $('.square').off('click')
+    $('.square').off('click', userClicked)
+    // Show new game button
+    $('#new-game-button').show()
   }
 }
 
 // Function that examines for a draw condition and prints draw.
 const isGameDraw = gameBoard => {
-  if (gameBoard.every(space => space !== '')) {
-    $('#user-message').text(`Draw. Game Over.`)
+  if ((!threeInRowX(gameBoard) && !threeInRowO(gameBoard) &&
+    !threeInColumnX(gameBoard) && !threeInColumnO(gameBoard) &&
+    !threeInDiagonalO(gameBoard) && !threeInDiagonalX(gameBoard)) &&
+    (gameBoard.every(space => space !== ''))) {
+    $('#game-message').text(`Draw. Game Over.`)
     // Disable further clicking.
-    $('.square').off('click')
+    $('.square').off('click', userClicked)
+    // Show new game button
+    $('#new-game-button').show()
   }
 }
 
+// Function that resets game board on new game click
+const newGame = () => {
+  event.preventDefault()
+  $('#new-game-button').hide()
+  gameBoard = ['', '', '', '', '', '', '', '', '']
+  $('.square').text('[]')
+  $('.row').show()
+  $('#user-message').show()
+  $('#game-message').show()
+  $('.square').on('click', userClicked)
+  console.log(gameBoard)
+}
 // Function that runs on click, and places a mark in a square
 const userClicked = event => {
+  $('#user-message').text('')
   console.log(playerTurnIs)
   const index = event.target.id
   if (playerTurnIs === 'X') {
@@ -187,5 +207,6 @@ module.exports = {
   onSignUp,
   onSignIn,
   onSignOut,
-  onChangePassword
+  onChangePassword,
+  newGame
 }

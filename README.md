@@ -23,3 +23,18 @@ This basic logic is written in JavaScript and the UI is structured and styled in
 9-9:20 finished issue request with solution
 9:20-9:30 uncommented all other row conditions to make sure they would work with win check function.
 10:15 - 11:10 Update the game engine when the game board is updated. for me right now this will be making the X and O appear
+11:30 - 11:45 Add messaging for the user when the user clicks on an invalid space
+1:15 - 2:00 Add messaging for the user when the game is over (win or draw)
+2:00 - 2:15 prevent clicking after a game ends
+2:15 - 2:45 writing sign up function
+3:00 - 3:30 writing sign in function
+2/16 12:10 - 12:45 refactoring functions into different files
+1:00 - 2:00 troubleshooting sign out 400 Error
+2/18 8:00 - 8:30 adding success/failure messages to sign in / sign out etc forms
+9:00-9:30 showing / hiding board
+10:30 - 
+
+Thoughts for bonus features:
+Say which player won
+Detect draw game sooner
+Log in automatically on sign up
