@@ -12,6 +12,8 @@ $(() => {
 
   $('#new-game-button').hide()
 
+  $('#get-games-button').hide()
+
   $('#user-message').hide()
 
   $('#game-message').hide()

@@ -28,6 +28,8 @@ const placeX = squareIndex => {
     playerTurnIs = 'O'
     currentPlayer()
     api.updateGame(event.target)
+      .then(ui.updateGameSuccess)
+      .catch(ui.updateGameFailure)
   }
 }
 
@@ -45,6 +47,8 @@ const placeO = squareIndex => {
     playerTurnIs = 'X'
     currentPlayer()
     api.updateGame(event.target)
+      .then(ui.updateGameSuccess)
+      .catch(ui.updateGameFailure)
   }
 }
 
@@ -69,7 +73,7 @@ const threeInRowO = (gameBoard) => {
 const threeInColumnX = (gameBoard) => {
   if ((gameBoard[0] === 'X' && gameBoard[3] === 'X' && gameBoard[6] === 'X') ||
   (gameBoard[1] === 'X' && gameBoard[4] === 'X' && gameBoard[7] === 'X') ||
-  (gameBoard[3] === 'X' && gameBoard[5] === 'X' && gameBoard[8] === 'X')) {
+  (gameBoard[2] === 'X' && gameBoard[5] === 'X' && gameBoard[8] === 'X')) {
     return true
   }
 }
@@ -77,7 +81,7 @@ const threeInColumnX = (gameBoard) => {
 const threeInColumnO = (gameBoard) => {
   if ((gameBoard[0] === 'O' && gameBoard[3] === 'O' && gameBoard[6] === 'O') ||
   (gameBoard[1] === 'O' && gameBoard[4] === 'O' && gameBoard[7] === 'O') ||
-  (gameBoard[3] === 'O' && gameBoard[5] === 'O' && gameBoard[8] === 'O')) {
+  (gameBoard[2] === 'O' && gameBoard[5] === 'O' && gameBoard[8] === 'O')) {
     return true
   }
 }
@@ -108,6 +112,9 @@ const isGameWon = (gameBoard) => {
     $('.square').off('click', userClicked)
     // Show new game button
     $('#new-game-button').show()
+    api.updateGame(event.target)
+      .then(ui.updateGameSuccess)
+      .catch(ui.updateGameFailure)
   }
 }
 
@@ -123,6 +130,9 @@ const isGameDraw = gameBoard => {
     $('.square').off('click', userClicked)
     // Show new game button
     $('#new-game-button').show()
+    api.updateGame(event.target)
+      .then(ui.updateGameSuccess)
+      .catch(ui.updateGameFailure)
   }
 }
 
@@ -137,6 +147,9 @@ const newGame = () => {
   $('#user-message').show()
   $('#game-message').show()
   currentPlayer()
+  api.createGame()
+    .then(ui.createGameSuccess)
+    .catch(ui.createGameFailure)
   $('.square').on('click', userClicked)
   console.log(gameBoard)
 }
@@ -144,20 +157,14 @@ const newGame = () => {
 // Function that runs GET request for list of games
 const getGames = () => {
   event.preventDefault()
-  const form = event.target
-  console.log('form', form)
-
-  const formData = getFormFields(form)
-  console.log('formData', formData)
-
-  api.getGames(formData)
+  api.getGames()
     .then(ui.getGamesSuccess)
     .catch(ui.getGamesFailure)
 }
 // Function that runs on click, and places a mark in a square
 const userClicked = event => {
   $('#user-message').text('')
-  console.log(playerTurnIs)
+  console.log('player turn is ' + playerTurnIs)
   const index = event.target.id
   if (playerTurnIs === 'X') {
     placeX(index)
@@ -186,12 +193,13 @@ const onSignUp = (event) => {
 
 const onSignIn = (event) => {
   event.preventDefault()
-
   const form = event.target
   console.log('form', form)
 
   const formData = getFormFields(form)
   console.log('formData', formData)
+  $('#game-message').show()
+  $('#game-message').text(`Player ${playerTurnIs}, it is your turn.`)
 
   api.signIn(formData)
     .then(ui.signInSuccess)
@@ -200,7 +208,6 @@ const onSignIn = (event) => {
 
 const onSignOut = (event) => {
   event.preventDefault()
-
   api.signOut()
     .then(ui.signOutSuccess)
     .catch(ui.signOutFailure)

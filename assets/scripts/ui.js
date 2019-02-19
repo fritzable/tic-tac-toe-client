@@ -2,10 +2,11 @@
 
 const store = require('./store.js')
 const api = require('./api.js')
+// const events = require('./events.js')
 
 const signUpSuccess = (responseData) => {
   $('#user-message').show()
-  $('#user-message').text('Successfully signed up!')
+  $('#user-message').text('Successfully signed up! Sign in to play')
   $('form').trigger('reset')
 }
 
@@ -22,14 +23,13 @@ const signInSuccess = (responseData) => {
   $('#sign-out-form').show()
   $('#sign-up-form').hide()
   $('#sign-in-form').hide()
-  $('#game-message').show()
-  $('#game-message').text(`Player X, it is your turn.`)
+  $('#get-games-button').show()
   // save the token
   store.user = responseData.user
-  $('form').trigger('reset')
   api.createGame()
     .then(createGameSuccess)
     .catch(createGameFailure)
+  $('form').trigger('reset')
 }
 
 const signInFailure = () => {
@@ -43,8 +43,10 @@ const signOutSuccess = () => {
   $('.row').hide()
   $('#change-password-form').hide()
   $('#sign-out-form').hide()
+  $('#get-games-button').hide()
   $('#sign-up-form').show()
   $('#sign-in-form').show()
+  $('#games-content').html('')
   $('form').trigger('reset')
   store.user = null
 }
@@ -64,6 +66,7 @@ const changePasswordFailure = () => {
 
 const createGameSuccess = (responseData) => {
   store.game = responseData.game
+  console.log('created game ' + store.game)
 }
 
 const createGameFailure = () => {

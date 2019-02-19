@@ -71,7 +71,7 @@ const updateGame = (target) => {
       'game': {
         'cell': {
           'index': target.dataset.cellIndex,
-          'value': target.text
+          'value': target.html
         },
         'over': false
       }
