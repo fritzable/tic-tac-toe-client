@@ -70,6 +70,24 @@ const createGameFailure = () => {
   $('#user-message').text('Game failed to create')
 }
 
+const getGamesSuccess = (responseData) => {
+  $('#user-message').text('Success. See below for games')
+  $('#games-content').html('')
+  responseData.games.forEach(game => {
+    const gamesHtml = (`
+    <h4>Game ID: ${game.id}</h4>
+    <p>Game board: ${game.cells}</p>
+    <p>Game over? ${game.over}</p>
+    <br>
+    `)
+    $('#games-content').append(gamesHtml)
+  })
+}
+
+const getGamesFailure = () => {
+  $('#user-message').text('Could not get games')
+}
+
 module.exports = {
   signUpSuccess,
   signUpFailure,
@@ -80,5 +98,7 @@ module.exports = {
   changePasswordSuccess,
   changePasswordFailure,
   createGameSuccess,
-  createGameFailure
+  createGameFailure,
+  getGamesSuccess,
+  getGamesFailure
 }

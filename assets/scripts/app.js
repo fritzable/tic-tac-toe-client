@@ -3,9 +3,6 @@
 // use require with a reference to bundle the file and use it in this file
 // const example = require('./example')
 const events = require('./events.js')
-const config = require('./config.js')
-const getFormFields = require('../../lib/get-form-fields.js')
-const ui = require('./ui.js')
 
 // use require without a reference to ensure a file is bundled
 // require('./example')
@@ -36,6 +33,8 @@ $(() => {
   $('#change-password-form').on('submit', events.onChangePassword)
 
   $('#sign-out-form').on('submit', events.onSignOut)
+
+  $('#get-games-button').on('submit', events.getGames)
 })
 
 module.exports = {

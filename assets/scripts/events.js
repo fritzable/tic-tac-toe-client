@@ -1,5 +1,4 @@
 const getFormFields = require('../../lib/get-form-fields.js')
-const config = require('./config.js')
 const api = require('./api.js')
 const ui = require('./ui.js')
 const store = require('./store.js')
@@ -141,6 +140,20 @@ const newGame = () => {
   $('.square').on('click', userClicked)
   console.log(gameBoard)
 }
+
+// Function that runs GET request for list of games
+const getGames = () => {
+  event.preventDefault()
+  const form = event.target
+  console.log('form', form)
+
+  const formData = getFormFields(form)
+  console.log('formData', formData)
+
+  api.getGames(formData)
+    .then(ui.getGamesSuccess)
+    .catch(ui.getGamesFailure)
+}
 // Function that runs on click, and places a mark in a square
 const userClicked = event => {
   $('#user-message').text('')
@@ -215,5 +228,6 @@ module.exports = {
   onSignIn,
   onSignOut,
   onChangePassword,
-  newGame
+  newGame,
+  getGames
 }
