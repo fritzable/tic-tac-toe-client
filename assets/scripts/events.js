@@ -12,7 +12,6 @@ let playerTurnIs = 'X'
 // Function to display current player turn
 const currentPlayer = () => {
   $('#game-message').text(`Player ${playerTurnIs}, it is your turn.`)
-  $('.square').trigger('reset')
 }
 
 // Function that takes an array index and replaces empty string with string of X
@@ -20,13 +19,14 @@ const placeX = squareIndex => {
   // If space is not empty
   if (gameBoard[squareIndex] !== '') {
     $('#game-message').text(`That spot's taken; try another.`)
-    console.log('tried to place an X over a taken spot')
   } else if (gameBoard[squareIndex] === '') {
   // Write X in space
     gameBoard[squareIndex] = 'X'
     $(event.target).text(`${playerTurnIs}`)
     playerTurnIs = 'O'
+    console.log('event.target is ' + event.target)
     currentPlayer()
+    store.game.cells[squareIndex] = 'X'
     api.updateGame(event.target)
       .then(ui.updateGameSuccess)
       .catch(ui.updateGameFailure)
@@ -46,6 +46,7 @@ const placeO = squareIndex => {
     $(event.target).text(`${playerTurnIs}`)
     playerTurnIs = 'X'
     currentPlayer()
+    store.game.cells[squareIndex] = 'O'
     api.updateGame(event.target)
       .then(ui.updateGameSuccess)
       .catch(ui.updateGameFailure)
@@ -139,13 +140,14 @@ const isGameDraw = gameBoard => {
 // Function that resets game board on new game click
 const newGame = () => {
   event.preventDefault()
-  $('#new-game-button').hide()
   playerTurnIs = 'X'
   gameBoard = ['', '', '', '', '', '', '', '', '']
+  store.game.cells = ['', '', '', '', '', '', '', '', '']
   $('.square').text('[]')
   $('.row').show()
   $('#user-message').show()
   $('#game-message').show()
+  $('#games-content').text('')
   currentPlayer()
   api.createGame()
     .then(ui.createGameSuccess)

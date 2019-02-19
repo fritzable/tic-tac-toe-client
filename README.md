@@ -32,7 +32,20 @@ This basic logic is written in JavaScript and the UI is structured and styled in
 1:00 - 2:00 troubleshooting sign out 400 Error
 2/18 8:00 - 8:30 adding success/failure messages to sign in / sign out etc forms
 9:00-9:30 showing / hiding board
-10:30 - 
+10:30 - 11:00 showing / hiding forms
+11:00 - 11:30 adding newGame button
+2:00 - 2:45 creating update curl script
+2:45 - 3:30
+4:30 - 4:42 writing create ajax call
+5:00 - 6:00 writing update ajax call
+6:00 - 6:40 work on get games call. Found bug: winner message display on draw.
+could not duplicate.
+2/19 8:00 - 8:30 writing ajax GET games call
+9:00 - 9:30 fixing game message when sign out / sign in during game
+9:30 - 10:30 fixing create game on sign in
+10:45 - 11:00 found and fixed bug: winner @ ["", "O", "", "X", "O", "X", "", "", "X"]
+11:00 - 11:30 fixing update game to change done to true on complete
+12:00 - 1:00 fixing update game to change X and O value on moves
 
 Thoughts for bonus features:
 Say which player won

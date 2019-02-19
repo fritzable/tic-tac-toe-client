@@ -60,7 +60,8 @@ const getGames = (formData) => {
 }
 
 const updateGame = (target) => {
-  console.log('store:', store)
+  console.log('store:', store.game)
+  console.log('target: ', target)
   return $.ajax({
     url: config.apiUrl + '/games/' + store.game.id,
     method: 'PATCH',
@@ -71,9 +72,9 @@ const updateGame = (target) => {
       'game': {
         'cell': {
           'index': target.dataset.cellIndex,
-          'value': target.html
+          'value': store.game.cells[target.dataset.cellIndex]
         },
-        'over': false
+        'over': store.game.over
       }
     }
   })
