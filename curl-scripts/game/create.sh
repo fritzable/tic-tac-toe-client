@@ -1,6 +1,6 @@
 # VARIABLE=VALUE sh curl-scripts/game/create.sh
 
-curl --include --request POST "https://tic-tac-toe-wdi-production.herokuapp.com/games/" \
+curl --include --request POST "https://tic-tac-toe-wdi.herokuapp.com/games/" \
   --header "Authorization: Token token=${TOKEN}" \
   --header "Content-type: application/json" \
   --data '{}'

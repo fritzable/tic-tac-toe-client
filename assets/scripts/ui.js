@@ -2,10 +2,11 @@
 
 const store = require('./store.js')
 const api = require('./api.js')
+// const events = require('./events.js')
 
 const signUpSuccess = (responseData) => {
   $('#user-message').show()
-  $('#user-message').text('Successfully signed up!')
+  $('#user-message').text('Successfully signed up! Sign in to play')
   $('form').trigger('reset')
 }
 
@@ -22,12 +23,13 @@ const signInSuccess = (responseData) => {
   $('#sign-out-form').show()
   $('#sign-up-form').hide()
   $('#sign-in-form').hide()
-  $('#game-message').show()
-  $('#game-message').text(`Player X, it is your turn.`)
+  $('#get-games-button').show()
   // save the token
   store.user = responseData.user
+  api.createGame()
+    .then(createGameSuccess)
+    .catch(createGameFailure)
   $('form').trigger('reset')
-  api.createGame(responseData)
 }
 
 const signInFailure = () => {
@@ -41,8 +43,10 @@ const signOutSuccess = () => {
   $('.row').hide()
   $('#change-password-form').hide()
   $('#sign-out-form').hide()
+  $('#get-games-button').hide()
   $('#sign-up-form').show()
   $('#sign-in-form').show()
+  $('#games-content').html('')
   $('form').trigger('reset')
   store.user = null
 }
@@ -60,6 +64,33 @@ const changePasswordFailure = () => {
   $('#user-message').text('Error on change password')
 }
 
+const createGameSuccess = (responseData) => {
+  store.game = responseData.game
+  console.log('created game ' + store.game)
+}
+
+const createGameFailure = () => {
+  $('#user-message').text('Game failed to create')
+}
+
+const getGamesSuccess = (responseData) => {
+  $('#user-message').text('Success. See below for games')
+  $('#games-content').html('')
+  responseData.games.forEach(game => {
+    const gamesHtml = (`
+    <h4>Game ID: ${game.id}</h4>
+    <p>Game board: ${game.cells}</p>
+    <p>Game over? ${game.over}</p>
+    <br>
+    `)
+    $('#games-content').append(gamesHtml)
+  })
+}
+
+const getGamesFailure = () => {
+  $('#user-message').text('Could not get games')
+}
+
 module.exports = {
   signUpSuccess,
   signUpFailure,
@@ -68,5 +99,9 @@ module.exports = {
   signOutSuccess,
   signOutFailure,
   changePasswordSuccess,
-  changePasswordFailure
+  changePasswordFailure,
+  createGameSuccess,
+  createGameFailure,
+  getGamesSuccess,
+  getGamesFailure
 }

@@ -1,6 +1,6 @@
 # VARIABLE=VALUE sh curl-scripts/game/update.sh
 
-curl --include --request PATCH "https://tic-tac-toe-wdi-production.herokuapp.com/games/${ID}" \
+curl --include --request PATCH "https://tic-tac-toe-wdi.herokuapp.com/games/${ID}" \
   --header "Authorization: Token token=${TOKEN}" \
   --header "Content-type: application/json" \
   --data '{
