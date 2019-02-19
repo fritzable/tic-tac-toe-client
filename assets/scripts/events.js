@@ -147,6 +147,7 @@ const newGame = () => {
   $('.row').show()
   $('#user-message').show()
   $('#game-message').show()
+  $('#games-content').text('')
   currentPlayer()
   api.createGame()
     .then(ui.createGameSuccess)
