@@ -91,6 +91,14 @@ const getGamesFailure = () => {
   $('#user-message').text('Could not get games')
 }
 
+const updateGameSuccess = () => {
+  console.log('update game ran')
+}
+
+const updateGameFailure = () => {
+  console.log('update game failed')
+}
+
 module.exports = {
   signUpSuccess,
   signUpFailure,
@@ -103,5 +111,7 @@ module.exports = {
   createGameSuccess,
   createGameFailure,
   getGamesSuccess,
-  getGamesFailure
+  getGamesFailure,
+  updateGameSuccess,
+  updateGameFailure
 }
