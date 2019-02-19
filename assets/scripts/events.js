@@ -140,9 +140,9 @@ const isGameDraw = gameBoard => {
 // Function that resets game board on new game click
 const newGame = () => {
   event.preventDefault()
-  $('#new-game-button').hide()
   playerTurnIs = 'X'
   gameBoard = ['', '', '', '', '', '', '', '', '']
+  store.game.cells = ['', '', '', '', '', '', '', '', '']
   $('.square').text('[]')
   $('.row').show()
   $('#user-message').show()

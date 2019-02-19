@@ -25,6 +25,7 @@ const signInSuccess = (responseData) => {
   $('#sign-up-form').hide()
   $('#sign-in-form').hide()
   $('#get-games-button').show()
+  $('#new-game-button').show()
   // save the token
   store.user = responseData.user
   api.createGame()
