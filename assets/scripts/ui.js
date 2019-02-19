@@ -13,6 +13,7 @@ const signUpSuccess = (responseData) => {
 const signUpFailure = () => {
   $('#user-message').show()
   $('#user-message').text('Error on sign up')
+  $('form').trigger('reset')
 }
 
 const signInSuccess = (responseData) => {
@@ -35,6 +36,7 @@ const signInSuccess = (responseData) => {
 const signInFailure = () => {
   $('#user-message').show()
   $('#user-message').text('Error on sign in')
+  $('form').trigger('reset')
 }
 
 const signOutSuccess = () => {
@@ -44,6 +46,7 @@ const signOutSuccess = () => {
   $('#change-password-form').hide()
   $('#sign-out-form').hide()
   $('#get-games-button').hide()
+  $('#new-game-button').hide()
   $('#sign-up-form').show()
   $('#sign-in-form').show()
   $('#games-content').html('')
@@ -53,6 +56,7 @@ const signOutSuccess = () => {
 
 const signOutFailure = () => {
   $('#user-message').text('Error on sign out')
+  $('form').trigger('reset')
 }
 
 const changePasswordSuccess = () => {
@@ -62,6 +66,7 @@ const changePasswordSuccess = () => {
 
 const changePasswordFailure = () => {
   $('#user-message').text('Error on change password')
+  $('form').trigger('reset')
 }
 
 const createGameSuccess = (responseData) => {
