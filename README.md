@@ -4,6 +4,20 @@ This basic logic is written in JavaScript and the UI is structured and styled in
 Planning:
 I planned to follow a schedule with styling prioritized last, in order to ensure I could get my JavaScript game logic and AJAX API requests working correctly first.
 
+My initial wireframe had different views for sign up and sign in, inspired by the three-in-a-row theme of the game.
+![wireframe image](https://imgur.com/a/lVVG54r "Wireframe Image")
+This would become radically simplified during development.
+
+I came up with some user stories:
+
+"as a user who is only casually interested in the game, I want to see feedback based on almost any click I make."
+"as a user who is intrigued and surprised by how many times I've played such a simple game, I want to see a record of how many games I've played."
+"as someone who doesn't expect much entertainment from tic-tac-toe, I want my moves to register quickly so I can get through multiple games."
+"as a modern web user, I want unique data of my games to be saved persistently so I can keep it in a personal account."
+"as a user who wants to use tic-tac-toe to decide an argument, I want to be able to play with another person who is next to me on the same computer."
+
+The dream to redefine the experience of playing tic-tac-toe for the ages would have to wait for version two.
+
 2/13 4:30-5:00 add event listeners to square divs, begin pseudocode game logic
 
 7:20-8:10 searching what data events provide. Need to figure out how to relate a
@@ -56,4 +70,4 @@ could not duplicate.
 Thoughts for bonus features:
 Say which player won
 Detect draw game sooner
-Log in automatically on sign u p 
+Log in automatically on sign u p

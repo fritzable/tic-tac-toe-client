@@ -84,7 +84,7 @@ const getGamesSuccess = (responseData) => {
   $('#games-content').html('')
   responseData.games.forEach(game => {
     const gamesHtml = (`
-    <h4>Game ID: ${game.id}</h4>
+    <p>Game ID: ${game.id}</p>
     <p>Game board: ${game.cells}</p>
     <p>Game over? ${game.over}</p>
     <br>
