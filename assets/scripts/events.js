@@ -174,7 +174,7 @@ const getGames = () => {
     .then(ui.getGamesSuccess)
     .catch(ui.getGamesFailure)
 }
-// Function that runs on click, and places a mark in a square
+// Function that runs on click, and plac es a mark in a square
 const userClicked = event => {
   if (store.game.over === true) {
     return

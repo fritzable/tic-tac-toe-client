@@ -79,7 +79,7 @@ const updateGame = (target) => {
     }
   })
 }
-
+// exports
 module.exports = {
   signUp,
   signIn,

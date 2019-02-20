@@ -56,4 +56,4 @@ could not duplicate.
 Thoughts for bonus features:
 Say which player won
 Detect draw game sooner
-Log in automatically on sign up
+Log in automatically on sign u p 
