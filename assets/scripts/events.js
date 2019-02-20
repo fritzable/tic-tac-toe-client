@@ -111,8 +111,6 @@ const isGameWon = (gameBoard) => {
     threeInDiagonalO(gameBoard) || threeInDiagonalX(gameBoard)) {
     $('#game-message').text(`Winner. Game Over.`)
     store.game.over = true
-    // Disable further clicking.
-  //  $('.square').off('click', userClicked)
     // Show new game button
     $('#new-game-button').show()
     api.updateGame(event.target)
@@ -128,9 +126,7 @@ const isGameDraw = gameBoard => {
     !threeInDiagonalO(gameBoard) && !threeInDiagonalX(gameBoard)) &&
     (gameBoard.every(space => space !== ''))) {
     $('#game-message').text(`Draw. Game Over.`)
-    // Disable further clicking.
     store.game.over = true
-  //  $('.square').off('click', userClicked)
     // Show new game button
     $('#new-game-button').show()
     api.updateGame(event.target)
@@ -155,7 +151,6 @@ const newGame = (event) => {
   $('#new-game-button').show()
   currentPlayer()
   api.createGame()
-    // .then($('.square').on('click', userClicked))
     .then(ui.createGameSuccess)
     .then(() => {
       gameBoard = ['', '', '', '', '', '', '', '', '']
