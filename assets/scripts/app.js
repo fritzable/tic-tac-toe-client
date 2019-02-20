@@ -8,7 +8,7 @@ const events = require('./events.js')
 // require('./example' )
 
 $(() => {
-  $('.row').hide()
+  $('.container').hide()
 
   $('#new-game-button').hide()
 
