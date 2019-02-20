@@ -17,8 +17,10 @@ const currentPlayer = () => {
 // Function that takes an array index and replaces empty string with string of X
 const placeX = squareIndex => {
   // If space is not empty
+  console.log('gameBoard[squargeIndex] is ' + gameBoard[squareIndex])
   if (gameBoard[squareIndex] !== '') {
     $('#game-message').text(`That spot's taken; try another.`)
+    console.log('tried to place an X over a taken spot')
   } else if (gameBoard[squareIndex] === '') {
   // Write X in space
     gameBoard[squareIndex] = 'X'
@@ -110,7 +112,7 @@ const isGameWon = (gameBoard) => {
     $('#game-message').text(`Winner. Game Over.`)
     store.game.over = true
     // Disable further clicking.
-    $('.square').off('click', userClicked)
+  //  $('.square').off('click', userClicked)
     // Show new game button
     $('#new-game-button').show()
     api.updateGame(event.target)
@@ -128,7 +130,7 @@ const isGameDraw = gameBoard => {
     $('#game-message').text(`Draw. Game Over.`)
     // Disable further clicking.
     store.game.over = true
-    $('.square').off('click', userClicked)
+  //  $('.square').off('click', userClicked)
     // Show new game button
     $('#new-game-button').show()
     api.updateGame(event.target)
@@ -138,22 +140,31 @@ const isGameDraw = gameBoard => {
 }
 
 // Function that resets game board on new game click
-const newGame = () => {
-  event.preventDefault()
+const newGame = (event) => {
+  console.log(event)
+
+  if (event) {
+    event.preventDefault()
+  }
   playerTurnIs = 'X'
-  gameBoard = ['', '', '', '', '', '', '', '', '']
-  store.game.cells = ['', '', '', '', '', '', '', '', '']
-  $('.square').text('[]')
+  $('.square').text('')
   $('.row').show()
   $('#user-message').show()
   $('#game-message').show()
   $('#games-content').text('')
+  $('#new-game-button').show()
   currentPlayer()
   api.createGame()
+    // .then($('.square').on('click', userClicked))
     .then(ui.createGameSuccess)
+    .then(() => {
+      gameBoard = ['', '', '', '', '', '', '', '', '']
+    })
+    .then(() => {
+      store.game.cells = ['', '', '', '', '', '', '', '', '']
+    })
     .catch(ui.createGameFailure)
-  $('.square').on('click', userClicked)
-  console.log(gameBoard)
+  console.log('gameboard is' + gameBoard)
 }
 
 // Function that runs GET request for list of games
@@ -165,6 +176,9 @@ const getGames = () => {
 }
 // Function that runs on click, and places a mark in a square
 const userClicked = event => {
+  if (store.game.over === true) {
+    return
+  }
   $('#user-message').text('')
   console.log('player turn is ' + playerTurnIs)
   const index = event.target.id
@@ -200,11 +214,10 @@ const onSignIn = (event) => {
 
   const formData = getFormFields(form)
   console.log('formData', formData)
-  $('#game-message').show()
-  $('#game-message').text(`Player ${playerTurnIs}, it is your turn.`)
 
   api.signIn(formData)
     .then(ui.signInSuccess)
+    .then(newGame)
     .catch(ui.signInFailure)
 }
 
