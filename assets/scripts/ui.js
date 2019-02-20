@@ -1,8 +1,6 @@
 'use strict'
 
 const store = require('./store.js')
-const api = require('./api.js')
-// const events = require('./events.js')
 
 const signUpSuccess = (responseData) => {
   $('#user-message').show()
@@ -26,11 +24,9 @@ const signInSuccess = (responseData) => {
   $('#sign-in-form').hide()
   $('#get-games-button').show()
   $('#new-game-button').show()
+  $('#game-message').show()
   // save the token
   store.user = responseData.user
-  api.createGame()
-    .then(createGameSuccess)
-    .catch(createGameFailure)
   $('form').trigger('reset')
 }
 
@@ -72,7 +68,11 @@ const changePasswordFailure = () => {
 
 const createGameSuccess = (responseData) => {
   store.game = responseData.game
-  console.log('created game ' + store.game)
+  //  events.gameBoard = responseData.game.cells
+  console.log('created game ' + store.game.cells)
+  console.log('create game game board is ' + responseData.game.cells)
+  $('#game-message').text('Player X, it is your turn.')
+  console.log('createGameSuccess: game cells is: ' + store.game.cells)
 }
 
 const createGameFailure = () => {

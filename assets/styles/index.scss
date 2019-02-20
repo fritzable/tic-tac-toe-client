@@ -1,5 +1,50 @@
 @import '~bootstrap/scss/bootstrap';
 
-.box {
-  border: 1px solid black;
+body {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.game-board {
+  margin: auto;
+  max-height: 90vh;
+  max-width: 90vh;
+  width: 90%;
+}
+
+.row {
+  background-size: cover;
+  display: flex;
+  flex-wrap: wrap;
+
+  > .square {
+    align-items: center;
+    background-color: white;
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+    display: flex;
+    font-size: 12vh;
+    justify-content: center;
+    min-height: calc(100% / 3);
+
+    &:nth-child(3n) {
+      border-right: 0;
+    }
+
+    &:nth-last-child(-1n + 3) {
+      border-bottom: 0;
+    }
+
+  }
+
+}
+
+form {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
