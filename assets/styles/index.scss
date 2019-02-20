@@ -6,6 +6,12 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   min-height: 100vh;
+
+  > p {
+    display: block;
+
+  }
+
 }
 
 .game-board {
