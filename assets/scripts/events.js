@@ -109,7 +109,14 @@ const isGameWon = (gameBoard) => {
   if (threeInRowX(gameBoard) || threeInRowO(gameBoard) ||
     threeInColumnX(gameBoard) || threeInColumnO(gameBoard) ||
     threeInDiagonalO(gameBoard) || threeInDiagonalX(gameBoard)) {
-    $('#game-message').text(`Winner. Game Over.`)
+    const winner = () => {
+      if (playerTurnIs === 'X') {
+        return 'O'
+      } else if (playerTurnIs === 'O') {
+        return 'X'
+      }
+    }
+    $('#game-message').text(`Player ${winner()} is the winner. Game Over.`)
     store.game.over = true
     // Show new game button
     $('#new-game-button').show()
@@ -144,7 +151,7 @@ const newGame = (event) => {
   }
   playerTurnIs = 'X'
   $('.square').text('')
-  $('.row').show()
+  $('.container').show()
   $('#user-message').show()
   $('#game-message').show()
   $('#games-content').text('')

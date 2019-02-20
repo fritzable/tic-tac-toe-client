@@ -17,7 +17,7 @@ const signUpFailure = () => {
 const signInSuccess = (responseData) => {
   $('#user-message').show()
   $('#user-message').text('Successfully signed in')
-  $('.row').show()
+  $('.container').show()
   $('#change-password-form').show()
   $('#sign-out-form').show()
   $('#sign-up-form').hide()
@@ -39,7 +39,7 @@ const signInFailure = () => {
 const signOutSuccess = () => {
   $('#user-message').text('Successfully signed out')
   $('#game-message').hide()
-  $('.row').hide()
+  $('.container').hide()
   $('#change-password-form').hide()
   $('#sign-out-form').hide()
   $('#get-games-button').hide()
@@ -84,7 +84,7 @@ const getGamesSuccess = (responseData) => {
   $('#games-content').html('')
   responseData.games.forEach(game => {
     const gamesHtml = (`
-    <h4>Game ID: ${game.id}</h4>
+    <p>Game ID: ${game.id}</p>
     <p>Game board: ${game.cells}</p>
     <p>Game over? ${game.over}</p>
     <br>
