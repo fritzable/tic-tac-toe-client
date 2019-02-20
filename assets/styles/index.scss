@@ -1,11 +1,17 @@
 @import '~bootstrap/scss/bootstrap';
-
+// scss
 body {
   align-items: center;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   min-height: 100vh;
+
+  > p {
+    display: block;
+
+  }
+
 }
 
 .game-board {

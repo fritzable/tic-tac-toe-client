@@ -104,7 +104,7 @@ const updateGameSuccess = () => {
 const updateGameFailure = () => {
   console.log('update game failed')
 }
-
+// exports
 module.exports = {
   signUpSuccess,
   signUpFailure,

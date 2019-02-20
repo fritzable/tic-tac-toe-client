@@ -1,6 +1,9 @@
 Using jQuery and AJAX, this simple game allows players to compete against each other locally in tic-tac-toe.
 This basic logic is written in JavaScript and the UI is structured and styled in HTML and CSS using Bootstrap.
 
+Planning:
+I planned to follow a schedule with styling prioritized last, in order to ensure I could get my JavaScript game logic and AJAX API requests working correctly first.
+
 2/13 4:30-5:00 add event listeners to square divs, begin pseudocode game logic
 
 7:20-8:10 searching what data events provide. Need to figure out how to relate a
@@ -46,8 +49,11 @@ could not duplicate.
 10:45 - 11:00 found and fixed bug: winner @ ["", "O", "", "X", "O", "X", "", "", "X"]
 11:00 - 11:30 fixing update game to change done to true on complete
 12:00 - 1:00 fixing update game to change X and O value on moves
+1:15 - 1:45 fixing bugs on new game, added new game to all signed in views
+1:45 - 2:15 hide get games results on new game
+2/20 8 - 11 resolve invalid move message, resolve create game on sign in vs new
 
 Thoughts for bonus features:
 Say which player won
 Detect draw game sooner
-Log in automatically on sign up
+Log in automatically on sign u p 
