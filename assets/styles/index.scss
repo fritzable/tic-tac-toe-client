@@ -1,5 +1,5 @@
 @import '~bootstrap/scss/bootstrap';
-// scss
+
 body {
   align-items: center;
   display: flex;
@@ -49,9 +49,16 @@ body {
 
 }
 
-form {
+.form-group {
   align-items: center;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
+  padding: 20px;
+}
+
+input {
+  display: flex;
+  align-content: flex-start;
 }
