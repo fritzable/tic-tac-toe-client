@@ -69,6 +69,7 @@ const changePasswordFailure = () => {
 const createGameSuccess = (responseData) => {
   store.game = responseData.game
   //  events.gameBoard = responseData.game.cells
+  $('#user-message').text('')
   $('#game-message').text('Player X, it is your turn.')
 }
 

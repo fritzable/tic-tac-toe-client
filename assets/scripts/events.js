@@ -147,7 +147,6 @@ const newGame = (event) => {
   $('.square').text('')
   $('.container').show()
   $('#user-message').show()
-  $('#user-message').text('')
   $('#game-message').show()
   $('#games-content').text('')
   $('#new-game-button').show()
