@@ -69,10 +69,7 @@ const changePasswordFailure = () => {
 const createGameSuccess = (responseData) => {
   store.game = responseData.game
   //  events.gameBoard = responseData.game.cells
-  console.log('created game ' + store.game.cells)
-  console.log('create game game board is ' + responseData.game.cells)
   $('#game-message').text('Player X, it is your turn.')
-  console.log('createGameSuccess: game cells is: ' + store.game.cells)
 }
 
 const createGameFailure = () => {
@@ -98,11 +95,11 @@ const getGamesFailure = () => {
 }
 
 const updateGameSuccess = () => {
-  console.log('update game ran')
+  $('#user-message').text('Good move. Duly noted.')
 }
 
 const updateGameFailure = () => {
-  console.log('update game failed')
+  $('#user-message').text('Oops, that move did not update in the database')
 }
 // exports
 module.exports = {
