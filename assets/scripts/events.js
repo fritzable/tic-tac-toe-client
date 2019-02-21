@@ -17,16 +17,13 @@ const currentPlayer = () => {
 // Function that takes an array index and replaces empty string with string of X
 const placeX = squareIndex => {
   // If space is not empty
-  console.log('gameBoard[squargeIndex] is ' + gameBoard[squareIndex])
   if (gameBoard[squareIndex] !== '') {
     $('#game-message').text(`That spot's taken; try another.`)
-    console.log('tried to place an X over a taken spot')
   } else if (gameBoard[squareIndex] === '') {
   // Write X in space
     gameBoard[squareIndex] = 'X'
     $(event.target).text(`${playerTurnIs}`)
     playerTurnIs = 'O'
-    console.log('event.target is ' + event.target)
     currentPlayer()
     store.game.cells[squareIndex] = 'X'
     api.updateGame(event.target)
@@ -41,7 +38,6 @@ const placeO = squareIndex => {
   if (gameBoard[squareIndex] !== '') {
   // Display message that move is invalid
     $('#game-message').text(`That spot's taken; try another.`)
-    console.log('tried to place an O over a taken spot')
   } else if (gameBoard[squareIndex] === '') {
   // Write O in space
     gameBoard[squareIndex] = 'O'
@@ -164,7 +160,6 @@ const newGame = (event) => {
       store.game.cells = ['', '', '', '', '', '', '', '', '']
     })
     .catch(ui.createGameFailure)
-  console.log('gameboard is' + gameBoard)
 }
 
 // Function that runs GET request for list of games
@@ -180,15 +175,12 @@ const userClicked = event => {
     return
   }
   $('#user-message').text('')
-  console.log('player turn is ' + playerTurnIs)
   const index = event.target.id
   if (playerTurnIs === 'X') {
     placeX(index)
   } else if (playerTurnIs === 'O') {
     placeO(index)
   }
-  console.log(gameBoard)
-  console.log(playerTurnIs)
   isGameWon(gameBoard)
   isGameDraw(gameBoard)
 }
@@ -197,10 +189,8 @@ const onSignUp = (event) => {
   event.preventDefault()
 
   const form = event.target
-  console.log('form', form)
 
   const formData = getFormFields(form)
-  console.log('formData', formData)
 
   api.signUp(formData)
     .then(ui.signUpSuccess)
@@ -210,10 +200,8 @@ const onSignUp = (event) => {
 const onSignIn = (event) => {
   event.preventDefault()
   const form = event.target
-  console.log('form', form)
 
   const formData = getFormFields(form)
-  console.log('formData', formData)
 
   api.signIn(formData)
     .then(ui.signInSuccess)
@@ -232,10 +220,8 @@ const onChangePassword = (event) => {
   event.preventDefault()
 
   const form = event.target
-  console.log('form', form)
 
   const formData = getFormFields(form)
-  console.log('formData', formData)
 
   api.changePassword(formData)
     .then(ui.changePasswordSuccess)

@@ -60,8 +60,6 @@ const getGames = (formData) => {
 }
 
 const updateGame = (target) => {
-  console.log('store:', store.game)
-  console.log('target: ', target)
   return $.ajax({
     url: config.apiUrl + '/games/' + store.game.id,
     method: 'PATCH',

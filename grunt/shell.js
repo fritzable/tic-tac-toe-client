@@ -13,7 +13,7 @@ const checkGitIgnore = `
 
 const ghPagesList = [
   'index.html',
-  'favicon.ico',
+  'tictactoe.png',
   'public'
 ].join(' ')
 

@@ -1,73 +1,28 @@
+## About:
+
 Using jQuery and AJAX, this simple game allows players to compete against each other locally in tic-tac-toe.
 This basic logic is written in JavaScript and the UI is structured and styled in HTML and CSS using Bootstrap.
 
-Planning:
+## Planning:
+
 I planned to follow a schedule with styling prioritized last, in order to ensure I could get my JavaScript game logic and AJAX API requests working correctly first.
+For the most part, problems that arose with programming the game only required an opposing command to be inserted or substituted for a faulty command. Using jQuery's `.hide` method for example, I hid several elements individually in conditions when I did not want them seen. This required case-by-case application of `.show` in other conditions. Additional modularity could have been acheived by designating groups on elements based on what view they should be visible in, and then either hiding or showing the group.
+
+## Design:
 
 My initial wireframe had different views for sign up and sign in, inspired by the three-in-a-row theme of the game.
-![wireframe image](https://imgur.com/a/lVVG54r "Wireframe Image")
+See [wireframe image.](/wireframe.PNG)
 This would become radically simplified during development.
 
-I came up with some user stories:
+I came up with some user stories: [USER STORIES](/USER-STORIES.md/)
 
-"as a user who is only casually interested in the game, I want to see feedback based on almost any click I make."
-"as a user who is intrigued and surprised by how many times I've played such a simple game, I want to see a record of how many games I've played."
-"as someone who doesn't expect much entertainment from tic-tac-toe, I want my moves to register quickly so I can get through multiple games."
-"as a modern web user, I want unique data of my games to be saved persistently so I can keep it in a personal account."
-"as a user who wants to use tic-tac-toe to decide an argument, I want to be able to play with another person who is next to me on the same computer."
+>The dream to redefine the entire tic-tac-toe-playing experience for the ages would have to wait for another version.
 
-The dream to redefine the experience of playing tic-tac-toe for the ages would have to wait for version two.
+## Thoughts for bonus features:
 
-2/13 4:30-5:00 add event listeners to square divs, begin pseudocode game logic
-
-7:20-8:10 searching what data events provide. Need to figure out how to relate a
-  div to the JS board.
-
-2/14 8-8:15 Reading MDN Event docs. I think I just need to make nine functions to
-  correspond to the nine squares.
-8:15-8:20  Testing one event listener function, fixed jQuery so the function runs
-  on click.
-8:20-8:30 Writing one function to change the gameBoard array on click.
-8:30-8:40 Fixing naming to count from 0.
-9-9:20 change layout from column to grid
-9:30-10:00 1 on 1, reinforce methodical schedule approach
-10:00-10:15 Refactor click handlers to fire events on any square and pass the
-  square's id to the marking function.
-10:15-10:45 Add turn switching function
-...
-3:45-4:45 Writing check function for game win or draw
-2/15 8:10-9 Writing check function for game win or draw, and issue request
-9-9:20 finished issue request with solution
-9:20-9:30 uncommented all other row conditions to make sure they would work with win check function.
-10:15 - 11:10 Update the game engine when the game board is updated. for me right now this will be making the X and O appear
-11:30 - 11:45 Add messaging for the user when the user clicks on an invalid space
-1:15 - 2:00 Add messaging for the user when the game is over (win or draw)
-2:00 - 2:15 prevent clicking after a game ends
-2:15 - 2:45 writing sign up function
-3:00 - 3:30 writing sign in function
-2/16 12:10 - 12:45 refactoring functions into different files
-1:00 - 2:00 troubleshooting sign out 400 Error
-2/18 8:00 - 8:30 adding success/failure messages to sign in / sign out etc forms
-9:00-9:30 showing / hiding board
-10:30 - 11:00 showing / hiding forms
-11:00 - 11:30 adding newGame button
-2:00 - 2:45 creating update curl script
-2:45 - 3:30
-4:30 - 4:42 writing create ajax call
-5:00 - 6:00 writing update ajax call
-6:00 - 6:40 work on get games call. Found bug: winner message display on draw.
-could not duplicate.
-2/19 8:00 - 8:30 writing ajax GET games call
-9:00 - 9:30 fixing game message when sign out / sign in during game
-9:30 - 10:30 fixing create game on sign in
-10:45 - 11:00 found and fixed bug: winner @ ["", "O", "", "X", "O", "X", "", "", "X"]
-11:00 - 11:30 fixing update game to change done to true on complete
-12:00 - 1:00 fixing update game to change X and O value on moves
-1:15 - 1:45 fixing bugs on new game, added new game to all signed in views
-1:45 - 2:15 hide get games results on new game
-2/20 8 - 11 resolve invalid move message, resolve create game on sign in vs new
-
-Thoughts for bonus features:
-Say which player won
-Detect draw game sooner
-Log in automatically on sign u p
+- Detect draw game sooner.
+- Log in automatically on sign up.
+- Animate the drawing of the four lines at each new game.
+- When placing a mark, set it at the X,Y coordinates of the cursor on click.
+- Using :hover pseudoclasses, change color of blank squares to one of three colors: a neutral color, and in the case of a second or subsequent game, a color associated with X when hovering over a square that was chosen for X in the immediately prior game, and a color associated with O when hovering over a square that was previously chosen for O.
+- Make the gameboard an open grid of hundreds of squares; the first move can go anywhere, the second move can go anywhere no more than two squares away from the first mark, all subsequent can only be made according to the limitations of a regular tic-tac-toe board that could exist with the first two marks in it.
