@@ -144,8 +144,6 @@ const isGameDraw = gameBoard => {
 
 // Function that resets game board on new game click
 const newGame = (event) => {
-  console.log(event)
-
   if (event) {
     event.preventDefault()
   }
