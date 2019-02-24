@@ -96,7 +96,6 @@ const getGamesFailure = () => {
 }
 
 const updateGameSuccess = () => {
-  $('#user-message').text('Good move. Duly noted.')
 }
 
 const updateGameFailure = () => {

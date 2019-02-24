@@ -8,19 +8,19 @@ const events = require('./events.js')
 // require('./example' )
 
 $(() => {
-  $('.container').hide()
-
-  $('#new-game-button').hide()
-
-  $('#get-games-button').hide()
-
-  $('#user-message').hide()
-
-  $('#game-message').hide()
-
-  $('#change-password-form').hide()
-
-  $('#sign-out-form').hide()
+  // $('.container').hide()
+  //
+  // $('#new-game-button').hide()
+  //
+  // $('#get-games-button').hide()
+  //
+  // $('#user-message').hide()
+  //
+  // $('#game-message').hide()
+  //
+  // $('#change-password-form').hide()
+  //
+  // $('#sign-out-form').hide()
 
   $('.square').on('click', events.userClicked)
 
