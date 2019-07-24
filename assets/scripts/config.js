@@ -2,8 +2,8 @@
 // config
 let apiUrl
 const apiUrls = {
-  production: 'https://tic-tac-toe-wdi-production.herokuapp.com',
-  development: 'https://tic-tac-toe-wdi.herokuapp.com'
+  production: 'https://game-project-api.herokuapp.com/',
+  development: 'https://game-project-api.herokuapp.com'
 }
 
 if (window.location.hostname === 'localhost') {

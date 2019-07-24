@@ -2,18 +2,18 @@
 
 body {
   align-items: center;
+  background-image: url('./notebook-paper.jpg');
+  background-size: cover;
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
   min-height: 100vh;
 
   > p {
     display: block;
     padding: 20px;
-
   }
-
 }
 
 div {
@@ -34,9 +34,9 @@ div {
 
   > .square {
     align-items: center;
-    background-color: white;
-    border-bottom: 1px solid;
-    border-right: 1px solid;
+    background-color: none;
+    border-bottom: 3px solid;
+    border-right: 3px solid;
     display: flex;
     font-size: 12vh;
     justify-content: center;
@@ -49,9 +49,7 @@ div {
     &:nth-last-child(-1n + 3) {
       border-bottom: 0;
     }
-
   }
-
 }
 
 .form-group {
@@ -69,10 +67,14 @@ div {
 }
 
 input {
-  display: flex;
   align-items: flex-start;
+  display: flex;
 }
 
 .navbar-img {
   height: 27px;
+}
+
+nav {
+  background-color: #e3f2fd;
 }

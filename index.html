@@ -15,93 +15,78 @@
 <!-- body -->
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a href="#" class="navbar-left"><img class="navbar-img" src="./tictactoe.png"></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <a href="https://fritzable.github.io/tic-tac-toe-client/" class="navbar-left"><img alt="logo" class="navbar-img" src="./tictactoe.png"></a>
+          <ul class="nav flex-column">
+            <li class="nav-item active">
+              <a class="nav-link" href="https://fritzable.github.io/tic-tac-toe-client/">ticTACtoe<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+          </ul>
         </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+        <form id="new-game-button">
+          <input type="submit" value="New game?">
+        </form>
+        <form id="sign-up-form">
+          <label for="sign-up-form">Sign up to create a new Player</label>
+          <div class="form-group">
+            <input name="credentials[email]" type="text" required placeholder="email">
+            <input name="credentials[password]" type="password" required placeholder="password">
+            <input name="credentials[password_confirmation]" type="password" required placeholder="password confirmation">
+            <input type="submit" value="Sign up">
+          </div>
+        </form>
+        <form id="sign-in-form">
+          <label for="sign-in-form">Sign in to play ticTACtoe</label>
+          <div class="form-group">
+            <input name="credentials[email]" type="email" required placeholder="email">
+            <input name="credentials[password]" type="password" required placeholder="password">
+            <input type="submit" value="Sign in">
+          </div>
+        </form>
+        <form id="sign-out-form">
+          <input type="submit" value="Sign out">
+        </form>
+        <form id="change-password-form">
+          <label for="change-password-form">Change your password here</label>
+          <div class="form-group">
+            <input name="passwords[old]" type="password" required placeholder="old password">
+            <input name="passwords[new]" type="password" required placeholder="new password">
+            <input type="submit" value="Change password">
+          </div>
+        </form>
+        <form id="get-games-button">
+          <label for="get-games-button">Click to get list of played games</label>
+          <input type="submit" value="Get games">
+        </form>
+
+      </nav>
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <section class="embed-responsive embed-responsive-1by1 game-board container">
+          <div class="embed-responsive-item row">
+            <div id="0" class="square col-4 box" data-cell-index='0'></div>
+            <div id="1" class="square col-4 box" data-cell-index='1'></div>
+            <div id="2" class="square col-4 box" data-cell-index='2'></div>
+            <div id="3" class="square col-4 box" data-cell-index='3'></div>
+            <div id="4" class="square col-4 box" data-cell-index='4'></div>
+            <div id="5" class="square col-4 box" data-cell-index='5'></div>
+            <div id="6" class="square col-4 box" data-cell-index='6'></div>
+            <div id="7" class="square col-4 box" data-cell-index='7'></div>
+            <div id="8" class="square col-4 box" data-cell-index='8'></div>
+          </div>
+          <p id="user-message"></p>
+          <p id="game-message"></p>
+        </section>
+
+        <p id="games-content"></p>
+      </main>
+    </div>
   </div>
-</nav>
-  <div class="overview">
-  <p id="user-message"></p>
-  <p id="game-message"></p>
-  <section class="embed-responsive embed-responsive-1by1 game-board container">
-    <div class="embed-responsive-item row">
-      <div id="0" class="square col-4 box" data-cell-index='0'></div>
-      <div id="1" class="square col-4 box" data-cell-index='1'></div>
-      <div id="2" class="square col-4 box" data-cell-index='2'></div>
-      <div id="3" class="square col-4 box" data-cell-index='3'></div>
-      <div id="4" class="square col-4 box" data-cell-index='4'></div>
-      <div id="5" class="square col-4 box" data-cell-index='5'></div>
-      <div id="6" class="square col-4 box" data-cell-index='6'></div>
-      <div id="7" class="square col-4 box" data-cell-index='7'></div>
-      <div id="8" class="square col-4 box" data-cell-index='8'></div>
-    </div>
-  </section>
-  <form id="new-game-button">
-    <input type="submit" value="New game?">
-  </form>
-  <form id="sign-up-form">
-    <label for="sign-up-form">Sign up to create a new Player</label>
-    <div class="form-group">
-      <input name="credentials[email]" type="text" required placeholder="email">
-      <input name="credentials[password]" type="password" required placeholder="password">
-      <input name="credentials[password_confirmation]" type="password" required placeholder="password confirmation">
-      <input type="submit" value="Sign up">
-    </div>
-  </form>
-  <form id="sign-in-form">
-    <label for="sign-in-form">Sign in to play ticTACtoe</label>
-    <div class="form-group">
-      <input name="credentials[email]" type="email" required placeholder="email">
-      <input name="credentials[password]" type="password" required placeholder="password">
-      <input type="submit" value="Sign in">
-    </div>
-  </form>
-  <form id="sign-out-form">
-    <input type="submit" value="Sign out">
-  </form>
-  <form id="change-password-form">
-    <label for="change-password-form">Change your password here</label>
-    <div class="form-group">
-      <input name="passwords[old]" type="password" required placeholder="old password">
-      <input name="passwords[new]" type="password" required placeholder="new password">
-      <input type="submit" value="Change password">
-    </div>
-  </form>
-  <form id="get-games-button">
-    <label for="get-games-button">Click to get list of played games</label>
-    <input type="submit" value="Get games">
-  </form>
-  <p id="games-content"></p>
 </body>
 
 </html>
