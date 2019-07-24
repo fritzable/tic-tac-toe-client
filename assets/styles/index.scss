@@ -2,10 +2,9 @@
 
 body {
   align-items: center;
-  background-image: url('./notebook-paper.jpg');
+  // background-image: url('./notebook-paper.jpg');
   background-size: cover;
   display: flex;
-  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
   min-height: 100vh;
@@ -53,7 +52,7 @@ div {
 }
 
 .form-group {
-  align-items: flex-start;
+  align-items: center;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -61,18 +60,9 @@ div {
   padding: 20px;
 }
 
-.overview {
-  display: flex;
-  flex-direction: column;
-}
-
 input {
-  align-items: flex-start;
+  align-content: flex-start;
   display: flex;
-}
-
-.navbar-img {
-  height: 27px;
 }
 
 nav {
