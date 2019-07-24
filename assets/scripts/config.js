@@ -2,7 +2,7 @@
 // config
 let apiUrl
 const apiUrls = {
-  production: 'https://game-project-api.herokuapp.com/',
+  production: 'https://game-project-api.herokuapp.com',
   development: 'https://game-project-api.herokuapp.com'
 }
 
