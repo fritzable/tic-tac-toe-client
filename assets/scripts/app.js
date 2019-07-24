@@ -22,7 +22,7 @@ $(() => {
 
   $('#sign-out-form').hide()
 
-  api.getGames()
+  api.callGames()
 
   $('.square').on('click', events.userClicked)
 

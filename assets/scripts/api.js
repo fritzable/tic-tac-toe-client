@@ -59,6 +59,13 @@ const getGames = (formData) => {
   })
 }
 
+const callGames = () => {
+  return $.ajax({
+    url: config.apiUrl + '/games',
+    method: 'GET'
+  })
+}
+
 const updateGame = (target) => {
   return $.ajax({
     url: config.apiUrl + '/games/' + store.game.id,
@@ -85,5 +92,6 @@ module.exports = {
   changePassword,
   createGame,
   updateGame,
-  getGames
+  getGames,
+  callGames
 }
